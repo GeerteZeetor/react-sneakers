@@ -1,0 +1,250 @@
+* {
+  font-family: 'Inter', sans-serif;
+}
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #e7f6ff;
+}
+.wrapper {
+  background: #ffffff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 20px;
+  max-width: 1080px;
+  margin: 50px auto;
+}
+
+header {
+  border-bottom: 1px solid #eaeaea;
+
+  img:not(:last-child) {
+    margin-right: 15px;
+  }
+
+  h3 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: calc(24.2 / 20 * 100%);
+  }
+  p {
+    margin: 0;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: calc(17 / 14 * 100%);
+    color: #9d9d9d;
+  }
+}
+
+.content {
+  h1 {
+    margin: 0;
+  }
+  .search-block {
+    border: 1px solid #a4d163;
+    border-radius: 10px;
+    width: 250px;
+    height: 45px;
+    img {
+      margin: 0 13px 0 18px;
+    }
+    input {
+      width: 78%;
+      height: 95%;
+      background-color: #f3f3f3;
+      border: none;
+      border-radius: 0 10px 0 10px;
+      font-size: 16px;
+    }
+  }
+
+  .sneakers {
+    display: flex;
+    flex-wrap: wrap;
+    .card {
+      border: 1px solid #f3f3f3;
+      padding: 20px;
+      width: 210px;
+      min-height: 260px;
+      border-radius: 40px;
+      margin: 0 0 30px;
+      transition: all 0.2s ease 0s;
+      &:hover {
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
+        transform: scale(1.05);
+      }
+      .favorite {
+        margin: 0;
+        position: absolute;
+        cursor: pointer;
+      }
+      .button {
+        position: relative;
+        width: 32px;
+        height: 32px;
+        background: #ffffff;
+        border: 1px solid #f2f2f2;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      .button img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 8px;
+        border: 1px solid #f2f2f2;
+        transition: all 0.3s ease 0s;
+        &:hover {
+          border: 1px solid #a4d163;
+        }
+      }
+
+      h5 {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: calc(17 / 14 * 100%);
+      }
+      span {
+        font-weight: 500;
+        font-size: 11px;
+        line-height: calc(13.3 / 11 * 100%);
+        color: #bdbdbd;
+      }
+      b {
+        font-weight: 700;
+        font-size: 14px;
+        line-height: calc(16.94 / 14 * 100%);
+      }
+    }
+  }
+}
+
+.overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.drawer {
+  position: absolute;
+  width: 385px;
+  height: 100%;
+  top: 0;
+  right: 0;
+  background: #ffffff;
+  box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+
+  .items {
+    flex: 1;
+    overflow: auto;
+  }
+  .cartItem {
+    margin: 20px 0 0 0;
+    background: #ffffff;
+    border: 1px solid #dedede;
+    border-radius: 20px;
+    height: 119px;
+  }
+  .cartItemImg {
+    height: 70px;
+    width: 70px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    margin: 0 0 0 20px;
+  }
+
+  .removeBtn {
+    opacity: 0.5;
+    transition: all 0.15s ease 0s;
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  img {
+    margin: 0 20px 0 13px;
+  }
+
+  h2 {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 30px 0;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: calc(29 / 24 * 100%);
+  }
+
+  p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: calc(17 / 14 * 100%);
+    max-width: 150px;
+    margin: 0 0 8px 0;
+  }
+
+  b {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: calc(17 / 14 * 100%);
+  }
+}
+
+.cartTotalBlock {
+  margin: 40px 0 0 0;
+  .dashed {
+    flex: 1;
+    height: 1px;
+    border-bottom: 1px dashed #dfdfdf;
+    position: relative;
+    top: -4px;
+    margin: 0 10px;
+  }
+  ul {
+    li {
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 20px;
+      &:last-child {
+        margin-bottom: 30px;
+      }
+    }
+  }
+  .greenButton {
+    width: 100%;
+    height: 55px;
+    background: #9dd558;
+    border: none;
+    border-radius: 18px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: calc(19 / 16 * 100%);
+    transition: all 0.1s ease 0s;
+    img {
+      position: relative;
+      bottom: -2px;
+      margin: 0 -45px 0 45px;
+      transition: all 0.12s ease 0s;
+    }
+    &:hover {
+      background: lighten(#9dd558, 5%);
+      cursor: pointer;
+      img {
+        transform: translateX(5px);
+      }
+    }
+    &:active {
+      background: darken(#9dd558, 5%);
+    }
+  }
+}
