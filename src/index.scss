@@ -43,7 +43,7 @@ header {
     margin: 0;
   }
   .search-block {
-    border: 1px solid #a4d163;
+    border: 1px solid #d1d1d1;
     border-radius: 10px;
     width: 250px;
     height: 45px;
@@ -63,61 +63,6 @@ header {
   .sneakers {
     display: flex;
     flex-wrap: wrap;
-    .card {
-      border: 1px solid #f3f3f3;
-      padding: 20px;
-      width: 210px;
-      min-height: 260px;
-      border-radius: 40px;
-      margin: 0 0 30px;
-      transition: all 0.2s ease 0s;
-      &:hover {
-        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
-        transform: scale(1.05);
-      }
-      .favorite {
-        margin: 0;
-        position: absolute;
-        cursor: pointer;
-      }
-      .button {
-        position: relative;
-        width: 32px;
-        height: 32px;
-        background: #ffffff;
-        border: 1px solid #f2f2f2;
-        border-radius: 8px;
-        cursor: pointer;
-      }
-      .button img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        border-radius: 8px;
-        border: 1px solid #f2f2f2;
-        transition: all 0.3s ease 0s;
-        &:hover {
-          border: 1px solid #a4d163;
-        }
-      }
-
-      h5 {
-        font-weight: 400;
-        font-size: 14px;
-        line-height: calc(17 / 14 * 100%);
-      }
-      span {
-        font-weight: 500;
-        font-size: 11px;
-        line-height: calc(13.3 / 11 * 100%);
-        color: #bdbdbd;
-      }
-      b {
-        font-weight: 700;
-        font-size: 14px;
-        line-height: calc(16.94 / 14 * 100%);
-      }
-    }
   }
 }
 

@@ -1,4 +1,4 @@
-export default function Header() {
+export default function Header({ onClickCart }) {
   return (
     <header className="d-flex justify-between p-45 align-center">
       <div className="d-flex align-center">
@@ -14,16 +14,34 @@ export default function Header() {
           <p>Магазин лучших кроссовок</p>
         </div>
       </div>
-      <ul className="d-flex ">
-        <li className="mr-30">
-          <img width={18} height={18} src="/img/cart.svg" alt="cart" />
-          <span>1205 руб.</span>
+      <ul className="d-flex">
+        <li className="mr-30" onClick={onClickCart}>
+          <img
+            className="cu-p"
+            width={18}
+            height={18}
+            src="/img/cart.svg"
+            alt="cart"
+          />
+          <span className="cu-p">1205 руб.</span>
         </li>
         <li className="mr-30">
-          <img width={20} height={20} src="/img/heart-header.svg" alt="user" />
+          <img
+            className="cu-p"
+            width={20}
+            height={20}
+            src="/img/heart-header.svg"
+            alt="user"
+          />
         </li>
         <li>
-          <img width={20} height={20} src="/img/user.svg" alt="user" />
+          <img
+            className="cu-p"
+            width={20}
+            height={20}
+            src="/img/user.svg"
+            alt="user"
+          />
         </li>
       </ul>
     </header>
