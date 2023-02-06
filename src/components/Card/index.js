@@ -1,10 +1,11 @@
 import styles from './Card.module.scss';
 import React from 'react';
 export default function Index(props) {
-  const { title, price, imgUrl, onClickFavorite, onClickAdd, onClickRemove } = {
+  const { title, price, imgUrl, onClickAdd, onClickRemove, onFavorite } = {
     ...props,
   };
   const [isAdded, setIsAdded] = React.useState(false);
+  const [isFavorite, setIsFavorite] = React.useState(false);
   const addClickHandler = () => {
     setIsAdded(!isAdded);
     !isAdded ? onClickAdd(props) : onClickRemove(props);
@@ -13,8 +14,11 @@ export default function Index(props) {
     <div className={styles.card}>
       <div className={styles.favorite}>
         <img
-          onClick={onClickFavorite}
-          src="/img/heart-unliked.svg"
+          onClick={() => {
+            setIsFavorite(!isFavorite);
+            onFavorite(props);
+          }}
+          src={!isFavorite ? '/img/unliked.svg' : '/img/liked.svg'}
           alt="unliked"
         />
       </div>
