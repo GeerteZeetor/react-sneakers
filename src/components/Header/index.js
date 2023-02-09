@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-export default function Header({ onClickCart }) {
+export default function Index({ onClickCart }) {
   return (
     <header className="d-flex justify-between p-45 align-center">
       <Link to="/">

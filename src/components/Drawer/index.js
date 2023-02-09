@@ -19,11 +19,8 @@ export default function Index({ onClickClose, onClickRemove, cardItems = [] }) {
               {cardItems.map((obj, index) => {
                 return (
                   <DrawerCard
-                    title={obj.title}
-                    price={obj.price}
-                    imgUrl={obj.imgUrl}
-                    id={obj.id}
-                    onClickRemove={obj => onClickRemove(obj)}
+                    {...obj}
+                    onClickRemove={onClickRemove}
                     key={index}
                   />
                 );

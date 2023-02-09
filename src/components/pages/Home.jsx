@@ -3,12 +3,13 @@ import React from 'react';
 
 export default function Home({
   items,
+  cartItems,
   searchValue,
+  setSearchValue,
   onAddToFavorite,
   onAddToCart,
   onRemoveToCart,
   onChangeSearchInput,
-  setSearchValue,
 }) {
   return (
     <div className="content p-50">
@@ -42,18 +43,12 @@ export default function Home({
           .map((obj, index) => {
             return (
               <Card
-                title={obj.title}
-                price={obj.price}
-                imgUrl={obj.imgUrl}
+                {...obj}
                 key={index}
-                id={obj.id}
-                onClickAdd={obj => {
-                  onAddToCart(obj);
-                }}
-                onClickRemove={obj => {
-                  onRemoveToCart(obj);
-                }}
+                onClickAdd={onAddToCart}
+                onClickRemove={onRemoveToCart}
                 onFavorite={onAddToFavorite}
+                added={cartItems.some(item => item.title === obj.title)}
               />
             );
           })}

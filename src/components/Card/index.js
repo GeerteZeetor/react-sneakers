@@ -1,23 +1,36 @@
 import styles from './Card.module.scss';
 import React from 'react';
 export default function Index(props) {
-  const { title, price, imgUrl, onClickAdd, onClickRemove, onFavorite } = {
+  const {
+    title,
+    price,
+    imgUrl,
+    onClickAdd,
+    onClickRemove,
+    onFavorite,
+    favorited = false,
+    added = false,
+  } = {
     ...props,
   };
-  const [isAdded, setIsAdded] = React.useState(false);
-  const [isFavorite, setIsFavorite] = React.useState(false);
-  const addClickHandler = () => {
+  const [isFavorite, setIsFavorite] = React.useState(favorited);
+  const [isAdded, setIsAdded] = React.useState(added);
+
+  const addClickHandler = obj => {
     setIsAdded(!isAdded);
     !isAdded ? onClickAdd(props) : onClickRemove(props);
   };
+
+  const onClickFavorite = () => {
+    onFavorite(props);
+    setIsFavorite(!isFavorite);
+  };
+
   return (
     <div className={styles.card}>
       <div className={styles.favorite}>
         <img
-          onClick={() => {
-            setIsFavorite(!isFavorite);
-            onFavorite(props);
-          }}
+          onClick={onClickFavorite}
           src={!isFavorite ? '/img/unliked.svg' : '/img/liked.svg'}
           alt="unliked"
         />
@@ -29,7 +42,7 @@ export default function Index(props) {
           <span className="text-uppercase">Цена:</span>
           <b>{price}</b>
         </div>
-        <button onClick={addClickHandler} className={styles.button}>
+        <button onClick={obj => addClickHandler(obj)} className={styles.button}>
           <img
             width={32}
             height={32}
