@@ -207,6 +207,11 @@ header {
     left: -20px;
     transform: translateX(10px);
   }
+  &:disabled {
+    background-color: #bebebe;
+    cursor: default;
+    animation: button-loading 0.9s infinite;
+  }
 }
 .cartEmpty {
   font-weight: 400;
@@ -215,5 +220,17 @@ header {
   .greenButton {
     max-width: 250px;
     margin: 40px 0 0 0;
+  }
+}
+
+@keyframes button-loading {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
   }
 }

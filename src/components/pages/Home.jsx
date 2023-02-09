@@ -1,16 +1,34 @@
-import Card from '../Card';
 import React from 'react';
+import Card from '../Card';
+import AppContext from '../../context';
 
 export default function Home({
-  items,
-  cartItems,
   searchValue,
   setSearchValue,
+  isLoading,
   onAddToFavorite,
   onAddToCart,
   onRemoveToCart,
   onChangeSearchInput,
 }) {
+  const state = React.useContext(AppContext);
+  const renderItems = () => {
+    const filtredItems = state.items.filter(item =>
+      item.title.toLowerCase().includes(searchValue.toLowerCase())
+    );
+
+    return (isLoading ? [...Array(8)] : filtredItems).map((obj, index) => (
+      <Card
+        {...obj}
+        key={index}
+        onClickAdd={onAddToCart}
+        onClickRemove={onRemoveToCart}
+        onFavorite={onAddToFavorite}
+        loading={isLoading}
+      />
+    ));
+  };
+
   return (
     <div className="content p-50">
       <div className="mb-40 d-flex justify-between ">
@@ -35,24 +53,7 @@ export default function Home({
           )}
         </div>
       </div>
-      <div className="sneakers d-flex ">
-        {items
-          .filter(item =>
-            item.title.toLowerCase().includes(searchValue.toLowerCase())
-          )
-          .map((obj, index) => {
-            return (
-              <Card
-                {...obj}
-                key={index}
-                onClickAdd={onAddToCart}
-                onClickRemove={onRemoveToCart}
-                onFavorite={onAddToFavorite}
-                added={cartItems.some(item => item.title === obj.title)}
-              />
-            );
-          })}
-      </div>
+      <div className="sneakers d-flex ">{renderItems()}</div>
     </div>
   );
 }
