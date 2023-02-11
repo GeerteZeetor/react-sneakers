@@ -4,6 +4,7 @@ import React from 'react';
 import AppContext from '../../context';
 export default function Index(props) {
   const {
+    id,
     title,
     price,
     imgUrl,
@@ -24,7 +25,9 @@ export default function Index(props) {
   // }, [isFavorite, isAdded, added, favorited]);
 
   const addClickHandler = () => {
-    !isItemAdded(title) ? onClickAdd(props) : onClickRemove(props);
+    !isItemAdded(id)
+      ? onClickAdd({ ...props, parentId: props.id })
+      : onClickRemove({ ...props, parentId: props.id });
   };
 
   const onClickFavorite = () => {
@@ -51,31 +54,35 @@ export default function Index(props) {
       ) : (
         <>
           <div className={styles.favorite}>
-            <img
-              onClick={onClickFavorite}
-              src={!isFavorite ? '/img/unliked.svg' : '/img/liked.svg'}
-              alt="unliked"
-            />
+            {onFavorite && (
+              <img
+                onClick={onClickFavorite}
+                src={!isFavorite ? '/img/unliked.svg' : '/img/liked.svg'}
+                alt="unliked"
+              />
+            )}
           </div>
           <img className="ml-10" width={133} height={112} src={imgUrl} alt="" />
           <h5>{title}</h5>
           <div className="d-flex justify-between align-center">
             <div className="d-flex flex-column">
               <span className="text-uppercase">Цена:</span>
-              <b>{price}</b>
+              <b>{price} руб.</b>
             </div>
-            <button onClick={addClickHandler} className={styles.button}>
-              <img
-                width={32}
-                height={32}
-                src={
-                  isItemAdded(title)
-                    ? '/img/btn-checked.svg'
-                    : '/img/btn-plus.svg'
-                }
-                alt="plus"
-              />
-            </button>
+            {onClickAdd && (
+              <button onClick={addClickHandler} className={styles.button}>
+                <img
+                  width={32}
+                  height={32}
+                  src={
+                    isItemAdded(id)
+                      ? '/img/btn-checked.svg'
+                      : '/img/btn-plus.svg'
+                  }
+                  alt="plus"
+                />
+              </button>
+            )}
           </div>
         </>
       )}

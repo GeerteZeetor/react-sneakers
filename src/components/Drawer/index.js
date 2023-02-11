@@ -1,15 +1,23 @@
-import React from 'react';
-import DrawerCard from './DrawerCard';
-import Info from '../Info';
-import AppContext from '../../context';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 
+import AppContext from '../../context';
+import Info from '../Info';
+import DrawerCard from './DrawerCard';
+
+import styles from './Drawer.module.scss';
+
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
-export default function Index({ onClickClose, onClickRemove, cardItems = [] }) {
-  const { cartItems, setCartItems } = React.useContext(AppContext);
-  const [orderId, setOrderId] = React.useState(null);
-  const [isOrderCompleted, setIsOrderCompleted] = React.useState(false);
-  const [isLoading, setIsLoading] = React.useState(false);
+export default function Index({
+  onClickClose,
+  onClickRemove,
+  cardItems = [],
+  opened,
+}) {
+  const { cartItems, setCartItems, totalPrice } = useContext(AppContext);
+  const [orderId, setOrderId] = useState(null);
+  const [isOrderCompleted, setIsOrderCompleted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onClickOrder = async () => {
     try {
@@ -36,12 +44,16 @@ export default function Index({ onClickClose, onClickRemove, cardItems = [] }) {
     }
   };
   return (
-    <div className="overlay">
-      <div className="drawer">
+    <div
+      className={`example ${styles.overlay} ${
+        opened ? styles.overlayVisible : styles.overlayHidden
+      }`}
+    >
+      <div className={styles.drawer}>
         <h2>
           Корзина{' '}
           <img
-            className="removeBtn cu-p"
+            className={styles.removeBtn}
             src="/img/btn-remove.svg"
             alt="remove"
             onClick={onClickClose}
@@ -49,7 +61,7 @@ export default function Index({ onClickClose, onClickRemove, cardItems = [] }) {
         </h2>
         {cardItems.length > 0 ? (
           <>
-            <div className="items">
+            <div className={` example ${styles.items}`}>
               {cardItems.map((obj, index) => {
                 return (
                   <DrawerCard
@@ -65,12 +77,15 @@ export default function Index({ onClickClose, onClickRemove, cardItems = [] }) {
                 <li>
                   <span className="">Итого:</span>
                   <div className="dashed"></div>
-                  <b className="">21 498 руб.</b>
+                  <b className=""> {totalPrice} руб.</b>
                 </li>
                 <li>
                   <span className="">Налог 5%:</span>
                   <div className="dashed"></div>
-                  <b className="">1074 руб.</b>
+                  <b className="">
+                    {' '}
+                    {((totalPrice / 100) * 5).toFixed(2)} руб.
+                  </b>
                 </li>
               </ul>
               <button

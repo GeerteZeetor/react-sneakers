@@ -1,5 +1,9 @@
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import AppContext from '../../context';
 export default function Index({ onClickCart }) {
+  const { totalPrice } = useContext(AppContext);
+
   return (
     <header className="d-flex justify-between p-45 align-center">
       <Link to="/">
@@ -26,7 +30,7 @@ export default function Index({ onClickCart }) {
             src="/img/cart.svg"
             alt="cart"
           />
-          <span className="cu-p">1205 руб.</span>
+          <span className="cu-p">{totalPrice} руб.</span>
         </li>
 
         <li className="mr-30">
@@ -40,16 +44,17 @@ export default function Index({ onClickCart }) {
             />
           </Link>
         </li>
-
-        <li>
-          <img
-            className="cu-p"
-            width={20}
-            height={20}
-            src="/img/user.svg"
-            alt="user"
-          />
-        </li>
+        <Link to="/orders">
+          <li>
+            <img
+              className="cu-p"
+              width={20}
+              height={20}
+              src="/img/user.svg"
+              alt="user"
+            />
+          </li>
+        </Link>
       </ul>
     </header>
   );

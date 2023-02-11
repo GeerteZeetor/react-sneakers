@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 export default function DrawerCard(props) {
   const { title, price, imgUrl, onClickRemove } = {
     ...props,
@@ -12,7 +10,7 @@ export default function DrawerCard(props) {
       ></div>
       <div className="ml-20">
         <p>{title}</p>
-        <b>{price}</b>
+        <b>{price} руб.</b>
       </div>
       <img
         onClick={() => {
